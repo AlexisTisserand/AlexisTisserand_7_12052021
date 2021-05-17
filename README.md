@@ -44,7 +44,7 @@ Ce repository contient les deux dossiers `frontend` et `backend`
   - **DATABASE_PASSWORD** = le mot de passe utilisateur de votre admin MySQL (*ex : passwordMYSQL*)
   - **DATABASE_USER** = le nom de votre utilisateur (*ex : root*)
   - **TOKEN_SECRET** = votre token souhaité, veuillez à ce qu'il soit assez long et complexe. Pour créer un Token avec node, utilisez votre terminal, écrivez `node`, validez, puis rentrez la commande suivante : `require('crypto').randomBytes(64).toString('hex')`.
-- Écrivez dans le terminal `node config_db.sql`
+- Écrivez dans le terminal `node config_db.js`
 - Enfin, lancez le serveur avec `nodemon server`
 
  ### 💡 Frontend
