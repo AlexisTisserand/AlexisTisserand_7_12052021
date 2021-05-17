@@ -98,14 +98,15 @@ const runInstall = () => {
         const users = await runQuery(userTable)
         console.log('Tableau users créé correctement')
         const categories = await runQuery(uploadsTable)
+        console.log("Tableau rôles crée correctement");
+        const roles = await runQuery(userRoles)
         console.log('Tableau uploads créé correctement')
         const insert_roles = await runQuery(insertRoles);
-        console.log("categories créées correctement");
-        const roles = await runQuery(userRoles)
+        console.log("Tableau user_roles crée correctement");
         const comments = await runQuery(commentsTable)
         console.log('Tableau comments créé correctement')
         const likes = await runQuery(likesTable)
-        console.log('Tableaux reactions créé correctement')
+        console.log('Tableaux likes créé correctement')
         const selectInfo = await runQuery(globalSelect)
         console.log('option global select activée')
         console.log('Votre base de données a été bien configurée')
