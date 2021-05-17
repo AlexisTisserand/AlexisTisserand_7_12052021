@@ -3,26 +3,31 @@
 Septième et dernier projet du parcours "Développeur Web" proposé par OpenClassrooms. <br>
 L'objectif de ce projet était de **construire un réseau social interne pour les employés de Groupomania**. Le but de cet outil est de faciliter les interactions entre collègues. Le département RH de Groupomania a laissé libre cours à son imagination pour les fonctionnalités du réseau et a imaginé plusieurs briques pour favoriser les échanges entre collègues. 
 
-Plus précisément, il était demandé de mettre en place un premier MVP d'une application web dans laquelle les utilisateurs inscrits pourront **ajouter leurs sauces préféréees** et **liker ou disliker** les sauces proposées par les autres.
-
 Vous trouverez le [brief complet ici](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DWJ_FR_P7/Groupomania_Specs_FR_DWJ_VF.pdf) 👀
 
-## :computer: CONTEXTE DU PROJET
+## 🔧 TECHNOLOGIES UTILISÉES
 
-- So Pekocko est une entreprise familiale de 10 salariés. 
-- Son activité principale est la création de sauces piquantes dont la composition est tenue secrète. 
-- Forte de son succès, l’entreprise souhaite se développer et créer une application web, dans laquelle les utilisateurs pourront ajouter leurs sauces préférées et liker ou disliker les sauces proposées par les autres.
+#### 💡 Backend : 
+- Framework : Express
+- Serveur : NodeJS
+- Base de données : MySQL
+- ORM : Sequelize
+
+#### 💡 Frontend : 
+- Framework : React.js ⚛️
+- Librairies : antD, material-ui
 
 ## 🎓 OBJECTIFS & COMPÉTENCES ÉVALUÉES
 
-***L'objectif de ce projet était de créer le backend de l'application, le frontend étant déjà codé et fourni dans ce [repository](https://github.com/OpenClassrooms-Student-Center/dwj-projet6)***
+***L'objectif de ce projet était de créer le backend et le frontend de l'application. Autrement dit, ce réseau social est mon premier projet full-stack***
 
 Ce repository contient les deux dossiers `frontend` et `backend`
 
 #### Compétences évaluées 
-- Implémenter un modèle logique de données conformément à la réglementation
-- Stocker des données de manière sécurisée
-- Mettre en œuvre des opérations CRUD de manière sécurisée
+- Gérer un stockage de données à l'aide de SQL
+- Personnaliser le contenu envoyé à un client web
+- Implémenter un stockage de données sécurisé en utilisant SQL
+- Authentifier un utilisateur et maintenir sa session
 
 #### Réalisation de l'API
 L’entreprise ayant subi quelques attaques sur son site web ces dernières semaines, pour ce projet les données des utilisateurs doivent être parfaitement protégées. Plusieurs exigeances : 
