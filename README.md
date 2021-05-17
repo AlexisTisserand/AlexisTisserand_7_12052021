@@ -33,26 +33,22 @@ Ce repository contient les deux dossiers `frontend` et `backend`
 
 * Cloner ce repository depuis Github
 
-#### 💡 Backend
+### 💡 Backend
+
+####Installation
 - Avant toute chose, vous devez créer un fichier `.env` dans le backend du projet et y renseigner dans une constante `DB_URI` votre adresse SRV MongoDB de la forme suivante : `DB_URI="mongodb+srv://<USERNAME>:<PASSWORD>@clusteroc.ldrlw.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority"`
 - Ensuite dans le même dossier `.env` , créer une constante `JWT_TOKEN` où vous inscrirez une chaîne de caractère complexe. Exemple : `JWT_TOKEN="&àçZSKLMDJGPZôlpsqkafapPKAPEFGOJPGd9876549"`
 - Ouvrir le terminal dans le dossier backend et installer le package nodemon : `npm install --save nodemon`
 - Enfin, lancez le serveur avec `nodemon server`
 
- #### 💡 Frontend
+ ### 💡 Frontend
  - Ouvrir le terminal dans le dossier frontend et exécuter `npm install`
  - Installer sass : `npm install node-sass`
  - Accéder au serveur de développement avec `ng serve` ou `npm start`
  - Rendez-vous à l'adresse suivante : [http://localhost:4200](http://localhost:4200)
 
 
-
-#### 👤 Connexion
+### 👤 Connexion
 - Ouvrir [localhost:4200](http://localhost:4200/) dans votre navigateur.
 - Pour s'inscrire, l'utilisateur doit fournir un email ainsi qu'un mot de passe qui doit contenir 8 caractères minimum (dont 1 majucules, 1 chiffre, sans espaces) 
 
-## 🔧 TECHNOLOGIES UTILISÉES
-- Framework : Express
-- Serveur : NodeJS
-- Base de données : MongoDB
-- Toutes les opérations de la base de données doivent utiliser le pack Mongoose avec des schémas de données strictes
