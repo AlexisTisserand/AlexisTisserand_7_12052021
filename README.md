@@ -57,5 +57,5 @@ Ce repository contient les deux dossiers `frontend` et `backend`
 ### 👤 Connexion et droits admin
 - Ouvrir [localhost:3000](http://localhost:3000/) dans votre navigateur.
 - Pour s'inscrire, l'utilisateur doit fournir un prénom, un nom, un email ainsi qu'un mot de passe qui doit contenir 8 caractères minimum (dont 1 majucules, 1 chiffre, sans espaces) 
-- Pour les droits d'administrateur, modifiez le champ `roleId` et mettez le sur **3** sur l'utilisateur voulu (via Workbench par exemple)
+- Pour les droits d'administrateur, allez dans la table `user_roles`, modifiez le champ `roleId` et mettez le sur **3** sur l'utilisateur voulu (via Workbench par exemple)
 
