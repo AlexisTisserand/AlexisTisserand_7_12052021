@@ -48,8 +48,7 @@ Ce repository contient les deux dossiers `frontend` et `backend`
 - Enfin, lancez le serveur avec `nodemon server`
 
  ### 💡 Frontend
- - Ouvrir le terminal dans le dossier frontend et exécuter `npm install`
- - Installer sass : `npm install node-sass`
+ - Ouvrir le terminal dans le dossier frontend et exécuter `npm install` pour installer les dépendances.
  - Accéder au serveur de développement `npm start`
  - Rendez-vous à l'adresse suivante : [http://localhost:3000](http://localhost:3000)
 
