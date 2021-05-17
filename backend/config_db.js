@@ -27,9 +27,11 @@ const userTable =
 
 // Tables user_roles
 //====================================================================
+const roles = 
+"CREATE TABLE `roles` (`id` int NOT NULL,`name` varchar(255) DEFAULT NULL, `createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;"
 
-const userRoles =
-  'CREATE TABLE `user_roles` (`createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL,    `roleId` int NOT NULL, `userId` int NOT NULL, PRIMARY KEY (`roleId`,`userId`),KEY `userId` (`userId`), CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;'
+const user_roles =
+  'CREATE TABLE `user_roles` (`createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL, `roleId` int NOT NULL, `userId` int NOT NULL, PRIMARY KEY (`roleId`,`userId`),KEY `userId` (`userId`), CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;'
 
 const insertRoles =
   "INSERT INTO `roles` VALUES (1,'user','2021-05-17 12:24:27','2021-05-17 12:24:27'),(2,'moderator','2021-05-17 12:24:27','2021-05-17 12:24:27'),(3,'admin','2021-05-17 12:24:27','2021-05-17 12:24:27');"
@@ -78,11 +80,12 @@ const runInstall = () => {
             console.log(
               '--- Bienvenue au configurateur de la base de données pour Groupomania ---'
             )
-            console.log('Veuillez patienter quelques seconds...')
             console.log('Connecté au serveur MySQL')
             connectParams.query(schema, function (err, result) {
               if (err) throw err
-              console.log(`Schema ${process.env.DATABASE} créé correctement`)
+              console.log(
+                `Schema ${process.env.DATABASE} a été créé correctement`
+              )
               resolve(true)
             })
           })
@@ -95,19 +98,21 @@ const runInstall = () => {
     db.connect(async function (err) {
       if (err) throw err
       try {
-        const users = await runQuery(userTable)
+        await runQuery(userTable)
         console.log('Tableau users créé correctement')
-        const categories = await runQuery(uploadsTable)
-        console.log("Tableau rôles crée correctement");
-        const roles = await runQuery(userRoles)
+        await runQuery(uploadsTable)
         console.log('Tableau uploads créé correctement')
-        const insert_roles = await runQuery(insertRoles);
-        console.log("Tableau user_roles crée correctement");
-        const comments = await runQuery(commentsTable)
+        await runQuery(roles)
+        console.log('Tableau roles crée correctement')
+        await runQuery(commentsTable)
         console.log('Tableau comments créé correctement')
-        const likes = await runQuery(likesTable)
-        console.log('Tableaux likes créé correctement')
-        const selectInfo = await runQuery(globalSelect)
+        await runQuery(likesTable)
+        console.log('Tableau likes créé correctement')
+        await runQuery(insertRoles)
+        await runQuery(user_roles)
+        console.log('Tableau user_roles crée correctement')
+        
+        await runQuery(globalSelect)
         console.log('option global select activée')
         console.log('Votre base de données a été bien configurée')
         console.log('--- Fin du programme ---')
