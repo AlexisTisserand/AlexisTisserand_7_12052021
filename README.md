@@ -15,7 +15,7 @@ Vous trouverez le [brief complet ici](https://s3-eu-west-1.amazonaws.com/course.
 
 #### 💡 Frontend : 
 - Framework : React.js ⚛️
-- Librairies : antD, material-ui
+- Librairies : ant-design, material-ui
 
 ## 🎓 OBJECTIFS & COMPÉTENCES ÉVALUÉES
 
@@ -24,21 +24,20 @@ Vous trouverez le [brief complet ici](https://s3-eu-west-1.amazonaws.com/course.
 Ce repository contient les deux dossiers `frontend` et `backend`
 
 #### Compétences évaluées 
-- Gérer un stockage de données à l'aide de SQL
+- Gérer un stockage de données à l'aide de SQL 
 - Personnaliser le contenu envoyé à un client web
 - Implémenter un stockage de données sécurisé en utilisant SQL
 - Authentifier un utilisateur et maintenir sa session
 
-#### Réalisation de l'API
-L’entreprise ayant subi quelques attaques sur son site web ces dernières semaines, pour ce projet les données des utilisateurs doivent être parfaitement protégées. Plusieurs exigeances : 
-- API doit respecter le RGPD et les standards OWASP ✅ 
-- le mot de passe utilisateur doit être chiffré ✅
-- l'authentification est renforcée sur les routes requises ✅ 
-- les adresses mails de la base de données sont uniques ✅
-
 ## 🔨 INSTALLATION
 
 * Cloner ce repository depuis Github
+
+#### 💡 Backend
+- Avant toute chose, vous devez créer un fichier `.env` dans le backend du projet et y renseigner dans une constante `DB_URI` votre adresse SRV MongoDB de la forme suivante : `DB_URI="mongodb+srv://<USERNAME>:<PASSWORD>@clusteroc.ldrlw.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority"`
+- Ensuite dans le même dossier `.env` , créer une constante `JWT_TOKEN` où vous inscrirez une chaîne de caractère complexe. Exemple : `JWT_TOKEN="&àçZSKLMDJGPZôlpsqkafapPKAPEFGOJPGd9876549"`
+- Ouvrir le terminal dans le dossier backend et installer le package nodemon : `npm install --save nodemon`
+- Enfin, lancez le serveur avec `nodemon server`
 
  #### 💡 Frontend
  - Ouvrir le terminal dans le dossier frontend et exécuter `npm install`
@@ -46,11 +45,7 @@ L’entreprise ayant subi quelques attaques sur son site web ces dernières sema
  - Accéder au serveur de développement avec `ng serve` ou `npm start`
  - Rendez-vous à l'adresse suivante : [http://localhost:4200](http://localhost:4200)
 
-#### 💡 Backend
-- Avant toute chose, vous devez créer un fichier `.env` dans le backend du projet et y renseigner dans une constante `DB_URI` votre adresse SRV MongoDB de la forme suivante : `DB_URI="mongodb+srv://<USERNAME>:<PASSWORD>@clusteroc.ldrlw.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority"`
-- Ensuite dans le même dossier `.env` , créer une constante `JWT_TOKEN` où vous inscrirez une chaîne de caractère complexe. Exemple : `JWT_TOKEN="&àçZSKLMDJGPZôlpsqkafapPKAPEFGOJPGd9876549"`
-- Ouvrir le terminal dans le dossier backend et installer le package nodemon : `npm install --save nodemon`
-- Enfin, lancez le serveur avec `nodemon server`
+
 
 #### 👤 Connexion
 - Ouvrir [localhost:4200](http://localhost:4200/) dans votre navigateur.
