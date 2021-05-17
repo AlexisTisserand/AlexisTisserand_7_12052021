@@ -35,20 +35,27 @@ Ce repository contient les deux dossiers `frontend` et `backend`
 
 ### 💡 Backend
 
-####Installation
-- Avant toute chose, vous devez créer un fichier `.env` dans le backend du projet et y renseigner dans une constante `DB_URI` votre adresse SRV MongoDB de la forme suivante : `DB_URI="mongodb+srv://<USERNAME>:<PASSWORD>@clusteroc.ldrlw.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority"`
-- Ensuite dans le même dossier `.env` , créer une constante `JWT_TOKEN` où vous inscrirez une chaîne de caractère complexe. Exemple : `JWT_TOKEN="&àçZSKLMDJGPZôlpsqkafapPKAPEFGOJPGd9876549"`
-- Ouvrir le terminal dans le dossier backend et installer le package nodemon : `npm install --save nodemon`
+#### Installation
+- Dans le terminal de VSCODE, situez-vous dans le dossier /backend.
+- Démarrer `npm install` pouur installer toutes les dependencies du backend.
+- Ensuite, vous devez créer un fichier `.env` dans le dossier backend du projet et y renseigner les champs suivants :
+  - **DATABASE** = le nom de la base de données souhaitées (*ex : groupomania_db*)
+  - **DATABASE_HOST** = le host souhaité (*ex : localhost*)
+  - **DATABASE_PASSWORD** = le mot de passe utilisateur de votre admin MySQL (*ex : passwordMYSQL*)
+  - **DATABASE_USER** = le nom de votre utilisateur (*ex : root*)
+  - **TOKEN_SECRET** = votre token souhaité, veuillez à ce qu'il soit assez long et complexe. Pour créer un Token avec node, utilisez votre terminal, écrivez `node`, validez, puis rentrez la commande suivante : `require('crypto').randomBytes(64).toString('hex')`.
+- Écrivez dans le terminal `node config_db.sql`
 - Enfin, lancez le serveur avec `nodemon server`
 
  ### 💡 Frontend
  - Ouvrir le terminal dans le dossier frontend et exécuter `npm install`
  - Installer sass : `npm install node-sass`
- - Accéder au serveur de développement avec `ng serve` ou `npm start`
- - Rendez-vous à l'adresse suivante : [http://localhost:4200](http://localhost:4200)
+ - Accéder au serveur de développement `npm start`
+ - Rendez-vous à l'adresse suivante : [http://localhost:3000](http://localhost:3000)
 
 
-### 👤 Connexion
-- Ouvrir [localhost:4200](http://localhost:4200/) dans votre navigateur.
-- Pour s'inscrire, l'utilisateur doit fournir un email ainsi qu'un mot de passe qui doit contenir 8 caractères minimum (dont 1 majucules, 1 chiffre, sans espaces) 
+### 👤 Connexion et droits admin
+- Ouvrir [localhost:3000](http://localhost:3000/) dans votre navigateur.
+- Pour s'inscrire, l'utilisateur doit fournir un prénom, un nom, un email ainsi qu'un mot de passe qui doit contenir 8 caractères minimum (dont 1 majucules, 1 chiffre, sans espaces) 
+- Pour les droits d'administrateur, modifiez le champ `roleId` et mettez le sur **3** sur l'utilisateur voulu (via Workbench par exemple)
 
