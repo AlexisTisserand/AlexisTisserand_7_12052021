@@ -10,8 +10,6 @@ const Op = db.Sequelize.Op
 exports.create = (req, res, next) => {
   const { title, description, userId } = req.body
 
-  console.log(req.file)
-
   const image = `${req.protocol}://${req.get('host')}/images/${
     req.file.filename
   }`
@@ -129,14 +127,12 @@ exports.findOne = (req, res, next) => {
         }
       })
         .then(like => {
-          console.log(like)
           data.likes = like
           res.send(data)
         })
-        .catch(err => console.log(err))
+        .catch(err => res.send(err))
     })
     .catch(err => {
-      console.log(err)
       res.status(500).send({
         message: 'Impossible de récupérer ce post avec cet id: ' + id
       })

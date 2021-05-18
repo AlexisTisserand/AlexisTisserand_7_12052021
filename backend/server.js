@@ -6,7 +6,6 @@ const app = express()
 const helmet = require('helmet')
 const nocache = require('nocache')
 
-
 app.use(
   cors({
     origin: '*',
@@ -34,7 +33,6 @@ db.sequelize.sync()
 //   console.log('Drop and Resync Database with { force: true }');
 //   initial();
 // });
-
 
 app.get('/', (req, res) => {
   res.json({ message: 'Bienvenue sur le réseau social de Groupomania' })
@@ -70,7 +68,6 @@ function initial () {
     name: 'admin'
   })
 }
-
 
 //Désactive la mise en cache du navigateur
 app.use(nocache())

@@ -27,8 +27,8 @@ const userTable =
 
 // Tables user_roles
 //====================================================================
-const roles = 
-"CREATE TABLE `roles` (`id` int NOT NULL,`name` varchar(255) DEFAULT NULL, `createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;"
+const roles =
+  'CREATE TABLE `roles` (`id` int NOT NULL,`name` varchar(255) DEFAULT NULL, `createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;'
 
 const user_roles =
   'CREATE TABLE `user_roles` (`createdAt` datetime NOT NULL,`updatedAt` datetime NOT NULL, `roleId` int NOT NULL, `userId` int NOT NULL, PRIMARY KEY (`roleId`,`userId`),KEY `userId` (`userId`), CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;'
@@ -111,7 +111,7 @@ const runInstall = () => {
         await runQuery(insertRoles)
         await runQuery(user_roles)
         console.log('Tableau user_roles crée correctement')
-        
+
         await runQuery(globalSelect)
         console.log('option global select activée')
         console.log('Votre base de données a été bien configurée')

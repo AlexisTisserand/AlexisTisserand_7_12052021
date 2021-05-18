@@ -135,7 +135,6 @@ exports.deleteComment = (req, res, next) => {
       })
         .then(num => {
           if (num == 1) {
-            console.log(num)
             res.status(200).json({
               message: 'Commentaire supprimé avec succès'
             })
