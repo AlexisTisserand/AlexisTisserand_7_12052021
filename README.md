@@ -37,7 +37,7 @@ Ce repository contient les deux dossiers `frontend` et `backend`
 
 #### Installation
 - Dans le terminal de VSCODE, situez-vous dans le dossier /backend.
-- Démarrer `npm install` pouur installer toutes les dependencies du backend.
+- Démarrez `npm install` pour installer toutes les dependencies du backend.
 - Ensuite, vous devez créer un fichier `.env` dans le dossier backend du projet et y renseigner les champs suivants :
   - **DATABASE** = le nom de la base de données souhaitées (*ex : groupomania_db*)
   - **DATABASE_HOST** = le host souhaité (*ex : localhost*)
