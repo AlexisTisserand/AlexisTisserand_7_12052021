@@ -40,11 +40,9 @@ const EditUpload = props => {
 
   const updateUpload = () => {
     UploadsDataServices.update(props.id, currentUpload)
-      .then(response => {
-        console.log(response.data)
+      .then(() => {
         getUpload()
         props.changeToFalse()
-
         setMessage('Ce post a été modifié avec succès')
       })
       .catch(err => console.log(err))
@@ -61,8 +59,7 @@ const EditUpload = props => {
     formData.append('image', currentUpload.image)
 
     UploadsDataServices.update(currentUpload.id, formData)
-      .then(response => {
-        console.log(response.data)
+      .then(() => {
         props.changeToFalse()
         setMessage("L'image a été modifiée avec succès")
         getUpload()
@@ -88,11 +85,10 @@ const EditUpload = props => {
     <div>
       {currentUpload ? (
         <>
-       
           <Card
-          className="col-md-auto mx-auto"
-          style={{ maxWidth: 800, width: '80%', marginBottom: 20 }}
-          cover={
+            className='col-md-auto mx-auto'
+            style={{ maxWidth: 800, width: '80%', marginBottom: 20 }}
+            cover={
               <img
                 src={file ? URL.createObjectURL(file) : currentUpload.image}
                 alt={file ? file.name : null}
@@ -115,18 +111,25 @@ const EditUpload = props => {
               />
             ]}
           >
-            {hide && <button
-              className='btn btn-sm btn-block btn-dark '
-              onClick={() => {handleClick(); showButton()}}
-            >
-              Choisir image
-            </button>}
-            {show && <button
-              onClick={updateImage}
-              className='btn btn-sm btn-block btn-success btn-block mt-2'
-            >
-              Changer image
-            </button>}
+            {hide && (
+              <button
+                className='btn btn-sm btn-block btn-dark '
+                onClick={() => {
+                  handleClick()
+                  showButton()
+                }}
+              >
+                Choisir image
+              </button>
+            )}
+            {show && (
+              <button
+                onClick={updateImage}
+                className='btn btn-sm btn-block btn-success btn-block mt-2'
+              >
+                Changer image
+              </button>
+            )}
 
             <div className='form-group'>
               <label htmlFor='image'></label>
@@ -171,7 +174,7 @@ const EditUpload = props => {
                 posté par{' '}
                 <Link
                   to={
-                    currentUpload.user.id == currentUser.id
+                    currentUpload.user.id === currentUser.id
                       ? '/profile'
                       : `/user/${currentUpload.user.id}`
                   }

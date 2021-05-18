@@ -76,7 +76,7 @@ const Comments = props => {
   useEffect(() => {
     getUpload(props.id)
     getComments(props.id)
-  }, [])
+  }, [props.id])
 
   const data = {
     commentBody: newComment,
@@ -139,7 +139,7 @@ const Comments = props => {
                         ? currentUser.image
                         : './../img/profile-picture.jpg'
                     }
-                    alt='profile-picture'
+                    alt='profile-picture-comments'
                     width='50'
                     height='50'
                     style={{ objectFit: 'cover' }}
@@ -185,7 +185,7 @@ const Comments = props => {
                                 ? comment.user.image
                                 : './../img/profile-picture.jpg'
                             }
-                            alt='profile-picture'
+                            alt='profile-picture-comments'
                             width='40'
                             height='40'
                             className='rounded-circle mr-3'
@@ -196,7 +196,7 @@ const Comments = props => {
                               <div className='d-flex flex-row align-items-center'>
                                 <Link
                                   to={
-                                    comment.user.id == currentUser.id
+                                    comment.user.id === currentUser.id
                                       ? '/profile'
                                       : `/user/${comment.user.id}`
                                   }
@@ -223,7 +223,7 @@ const Comments = props => {
                               {' '}
                               <span className='wish'>
                                 {currentUser.id === comment.userId ||
-                                user.roles === 'ROLE_ADMIN' ? (
+                                user.roles == 'ROLE_ADMIN' ? (
                                   <li className='post-like'>
                                     <DeleteForeverIcon
                                       onClick={() => deleteComment(comment.id)}
@@ -234,7 +234,7 @@ const Comments = props => {
                               </span>{' '}
                               <span className='ml-3'>
                                 {currentUser.id === comment.userId ||
-                                user.roles === 'ROLE_ADMIN' ? (
+                                user.roles == "ROLE_ADMIN" ? (
                                   <li className='post-like'>
                                     <EditIcon
                                       onClick={() => {

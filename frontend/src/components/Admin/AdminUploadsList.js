@@ -37,7 +37,6 @@ const AdminUploadsList = () => {
     UploadsDataService.getAll()
       .then(response => {
         setUploads(response.data)
-        // console.log(response.data)
       })
       .catch(err => {
         console.log(err)
@@ -92,7 +91,6 @@ const AdminUploadsList = () => {
       [event.target.name]: event.target.files[0]
     })
     setFile(event.target.files[0])
-    console.log(event.target.files[0])
   }
 
   const handleClick = () => {

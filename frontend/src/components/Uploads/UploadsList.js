@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react'
-
 import { Link } from 'react-router-dom'
 import { isEmpty } from './../Utils/Utils'
 import UploadsDataServices from '../../services/upload.service'
-import axios from 'axios'
-
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder'
 import jwt_decode from 'jwt-decode'
 import UserService from '../../services/user.service'
-
 import { Card, Avatar } from 'antd'
 import { EllipsisOutlined } from '@ant-design/icons'
 
@@ -50,7 +46,7 @@ const UploadsList = () => {
           uploads.map(upload => {
             return (
               <div key={upload.id}>
-                {currentUser.id == upload.userId ||
+                {currentUser.id === upload.userId ||
                 user.roles == 'ROLE_ADMIN' ? (
                   !editMode ? (
                     <Card
@@ -62,7 +58,7 @@ const UploadsList = () => {
                       }}
                       cover={
                         <img
-                          alt='picture'
+                          alt='upload-pic-homepage'
                           src={upload.image}
                           height='700px'
                           style={{ objectFit: 'cover' }}
@@ -85,34 +81,32 @@ const UploadsList = () => {
                       <br />
                       <br />
                       <div>
-
-                     
-                      <blockquote className='blockquote'>
-                        <footer className='blockquote-footer'>
-                          posté par{' '}
-                          <Link
-                            to={
-                              currentUser.id == upload.user.id
-                                ? '/profile'
-                                : `/user/${upload.user.id}`
-                            }
-                            className='post-title'
-                          >
-                            <cite
-                              title={
-                                upload.user.firstName +
-                                ' ' +
-                                upload.user.lastName
+                        <blockquote className='blockquote'>
+                          <footer className='blockquote-footer'>
+                            posté par{' '}
+                            <Link
+                              to={
+                                currentUser.id === upload.user.id
+                                  ? '/profile'
+                                  : `/user/${upload.user.id}`
                               }
+                              className='post-title'
                             >
-                              {upload.user.firstName +
-                                ' ' +
-                                upload.user.lastName}
-                            </cite>
-                          </Link>
-                        </footer>
-                      </blockquote>
-                      <FavoriteBorder /> {upload._likes.length}
+                              <cite
+                                title={
+                                  upload.user.firstName +
+                                  ' ' +
+                                  upload.user.lastName
+                                }
+                              >
+                                {upload.user.firstName +
+                                  ' ' +
+                                  upload.user.lastName}
+                              </cite>
+                            </Link>
+                          </footer>
+                        </blockquote>
+                        <FavoriteBorder /> {upload._likes.length}
                       </div>
                     </Card>
                   ) : (

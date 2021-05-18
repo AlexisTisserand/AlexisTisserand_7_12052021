@@ -1,13 +1,8 @@
 import axios from 'axios'
-import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:5000/api/userService/'
 
 class UserService {
-  // getPublicContent () {
-  //   return axios.get(API_URL + '/')
-  // }
-
   getUploadsBoard () {
     return axios.get(API_URL + 'uploads')
   }
@@ -36,11 +31,11 @@ class UserService {
     return axios.delete(API_URL + 'users/')
   }
 
-  update(id, data) {
+  update (id, data) {
     return axios.put(API_URL + `users/${id}`, data)
   }
 
-  findByName(name) {
+  findByName (name) {
     return axios.get(API_URL + `users?firstName=${name}`)
   }
 }

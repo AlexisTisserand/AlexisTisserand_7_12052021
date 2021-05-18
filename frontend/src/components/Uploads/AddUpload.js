@@ -3,17 +3,12 @@ import UploadsDataServices from '../../services/upload.service'
 import Form from 'react-validation/build/form'
 import Input from 'react-validation/build/input'
 import CheckButton from 'react-validation/build/button'
-import { Link } from 'react-router-dom'
-// import ImgCrop from 'antd-img-crop'
-// import { Upload } from 'antd'
 
 const AddUpload = () => {
   const form = useRef()
   const checkBtn = useRef()
   const [show, setShow] = useState(false)
   const [hide, setHide] = useState(true)
-
-  
 
   const showButton = () => {
     setShow(true)
@@ -57,11 +52,8 @@ const AddUpload = () => {
     formData.append('image', upload.image)
     formData.append('userId', JSON.parse(localStorage.getItem('user')).id)
 
-    // console.log(formData)
-
     UploadsDataServices.create(formData)
       .then(response => {
-        // console.log(response)
         setUpload({
           id: response.data.id,
           title: response.data.title,
@@ -70,16 +62,10 @@ const AddUpload = () => {
           userId: response.data.userId
         })
         setSubmitted(true)
-        // console.log(response.data)
       })
       .catch(err => {
         console.log(err)
       })
-  }
-
-  const newUpload = () => {
-    setUpload(initialUploadState)
-    setSubmitted(false)
   }
 
   return (
@@ -91,15 +77,6 @@ const AddUpload = () => {
               Upload bien envoyé ! Rendez-vous sur la homepage pour voir votre
               chef d'oeuvre !
             </h4>
-            {/* <button className='btn btn-success mb-4' onClick={newUpload}>
-              Poster à nouveau
-            </button> */}
-            <br />
-            {/* <Link to='/'>
-              <button className='btn btn-success '>
-                Retour à l'accueil
-              </button>
-            </Link> */}
           </div>
         ) : (
           <div>
@@ -132,46 +109,41 @@ const AddUpload = () => {
 
             <div className='profile mr-3 profile-pic img__wrap text-center'>
               <img
-                src={
-                  file
-                    ? URL.createObjectURL(file)
-                    : './../img/cat.gif'
-                }
+                src={file ? URL.createObjectURL(file) : './../img/cat.gif'}
                 alt={file ? file.name : null}
-                
                 width='300px'
                 height='300px'
-                style={{objectFit: 'cover'}}
+                style={{ objectFit: 'cover' }}
                 className='rounded profile-pic mb-2'
               />
               {hide && (
-                    <button
-                      className='btn btn-sm btn-block btn-light btn-block mb-2'
-                      onClick={() => {
-                        handleClick()
-                        showButton()
-                      }}
-                    >
-                      Choisir photo
-                    </button>
-                  )}
-                  <input
-                    ref={hiddenFileInput}
-                    style={{ display: 'none' }}
-                    type='file'
-                    className='form-control'
-                    id='image'
-                    name='image'
-                    onChange={handleFileChange}
-                  />
-                  {show && (
-                    <button
-                      onClick={saveUpload}
-                      className='btn btn-sm btn-block btn-success btn-block mb-2 mt-2'
-                    >
-                      Envoyer !
-                    </button>
-                  )}
+                <button
+                  className='btn btn-sm btn-block btn-light btn-block mb-2'
+                  onClick={() => {
+                    handleClick()
+                    showButton()
+                  }}
+                >
+                  Choisir photo
+                </button>
+              )}
+              <input
+                ref={hiddenFileInput}
+                style={{ display: 'none' }}
+                type='file'
+                className='form-control'
+                id='image'
+                name='image'
+                onChange={handleFileChange}
+              />
+              {show && (
+                <button
+                  onClick={saveUpload}
+                  className='btn btn-sm btn-block btn-success btn-block mb-2 mt-2'
+                >
+                  Envoyer !
+                </button>
+              )}
             </div>
 
             {/* <div className='form-group'>

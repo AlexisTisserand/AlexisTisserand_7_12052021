@@ -11,12 +11,11 @@ import {
 
 const user = JSON.parse(localStorage.getItem('user'))
 
-
 const initialState = user
   ? { isLoggedIn: true, user: jwt_decode(user.accessToken) }
   : { isLoggedIn: false, user: null }
 
-export default function (state = initialState, action) {
+export default function authReducer (state = initialState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
       return {

@@ -37,7 +37,6 @@ const AdminUsersList = props => {
     UserService.getAllUsers()
       .then(response => {
         setUsers(response.data)
-        console.log(response.data)
       })
       .catch(err => {
         console.log(err)

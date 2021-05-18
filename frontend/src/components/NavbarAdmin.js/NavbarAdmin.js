@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 
 import AdminUsersList from './../Admin/AdminUsersList'
 import AdminUploadsList from './../Admin/AdminUploadsList'
 
 const NavbarAdmin = () => {
-  
   return (
     <div className='container-fluid '>
       <div className='row'>

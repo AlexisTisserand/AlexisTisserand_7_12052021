@@ -14,7 +14,6 @@ const Profile = () => {
   const [comments, setComments] = useState([])
   const [editMode, setEditMode] = useState(false)
 
-
   const changeToFalse = () => {
     setEditMode(false)
     retrieveUser()
@@ -22,7 +21,6 @@ const Profile = () => {
 
   const retrieveUser = () => {
     UserService.getUser(currentUser.id).then(response => {
-      // console.log(response.data.comments)
       setComments(response.data.comments)
       setCurrentUser(response.data)
     })
@@ -30,13 +28,10 @@ const Profile = () => {
 
   useEffect(() => {
     UploadsDataServices.getPostsByUser(currentUser.id).then(response => {
-      // console.log(response.data)
       setYourUploads(response.data.reverse())
     })
-
     retrieveUser()
   }, [])
-
 
   if (!currentUser) {
     return <Redirect to='/login' />
@@ -56,7 +51,6 @@ const Profile = () => {
                 <div className='media align-items-end profile-head'>
                   <div className='profile profile-image mr-3'>
                     <img
-                      
                       src={
                         currentUser.image
                           ? currentUser.image
@@ -153,4 +147,3 @@ const Profile = () => {
 }
 
 export default Profile
-

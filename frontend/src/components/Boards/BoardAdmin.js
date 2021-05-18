@@ -1,35 +1,24 @@
-import React, {useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import UserService from '../../services/user.service'
 
-import NavbarAdmin from './../NavbarAdmin.js/NavbarAdmin';
-import LoginRequest from './../LoginRequest/LoginRequest';
-
+import NavbarAdmin from './../NavbarAdmin.js/NavbarAdmin'
+import LoginRequest from './../LoginRequest/LoginRequest'
 
 const BoardAdmin = () => {
   const [content, setContent] = useState('')
 
   useEffect(() => {
     UserService.getAdminBoard().then(
-      response => {
-        // setContent(<AdminUploadsManagement/>)
-        setContent(<NavbarAdmin/>)
+      () => {
+        setContent(<NavbarAdmin />)
       },
-      error => {
-        setContent(
-          <LoginRequest/>
-        // (error.response &&
-        //   error.response.data &&
-        //   error.response.data.message) ||
-        //   error.message ||
-        //   error.toString()
-        )
+      () => {
+        setContent(<LoginRequest />)
       }
     )
   }, [])
 
-  return(
-    <div>{content}</div>
-  ) 
+  return <div>{content}</div>
 }
 
 export default BoardAdmin

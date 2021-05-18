@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import UploadsList from '../components/Uploads/UploadsList'
-import UserService from '../services/user.service'
 import LoginRequest from './../components/LoginRequest/LoginRequest'
 import { useSelector } from 'react-redux';
 
@@ -18,8 +17,6 @@ const Home = () => {
         <LoginRequest />
       )
     }
-        
-      
   }, [])
 
   return <div>{content}</div>

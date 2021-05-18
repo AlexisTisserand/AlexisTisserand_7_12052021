@@ -11,14 +11,9 @@ const BoardModerator = () => {
       response => {
         setContent(response.data)
       },
-      error => {
+      () => {
         setContent(
           <LoginRequest/>
-        // (error.response &&
-        //   error.response.data &&
-        //   error.response.data.message) ||
-        //   error.message ||
-        //   error.toString()
         )
       }
     )

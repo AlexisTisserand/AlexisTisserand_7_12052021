@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UploadsDataServices from '../../services/upload.service'
-import CommentsService from '../../services/comments.service'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -13,11 +12,7 @@ import { isEmpty } from './../Utils/Utils'
 import { Modal } from 'antd'
 
 import { Card, Avatar } from 'antd'
-import {
-  EditOutlined,
-  CommentOutlined,
-  DeleteOutlined
-} from '@ant-design/icons'
+import { EditOutlined, CommentOutlined } from '@ant-design/icons'
 import Comments from '../Comments/Comments'
 
 import EditUpload from './EditUpload'
@@ -29,6 +24,19 @@ const OneUpload = props => {
   const currentUser = useSelector(state => state.authReducer).user
 
   const [isModalVisible, setIsModalVisible] = useState(false)
+  
+  const initialUploadState = {
+    id: null,
+    title: '',
+    description: '',
+    image: '',
+    userId: null,
+    user: []
+  }
+
+  const [currentUpload, setCurrentUpload] = useState(initialUploadState)
+
+  const [editMode, setEditMode] = useState(false)
 
   const showModal = () => {
     setIsModalVisible(true)
@@ -44,20 +52,6 @@ const OneUpload = props => {
 
   const user = JSON.parse(localStorage.getItem('user'))
 
-  const initialUploadState = {
-    id: null,
-    title: '',
-    description: '',
-    image: '',
-    userId: null,
-    user: []
-  }
-
-  const [currentUpload, setCurrentUpload] = useState(initialUploadState)
-  const [comments, setComments] = useState([])
-  const [newComment, setNewComment] = useState('')
-  const [editMode, setEditMode] = useState(false)
-  const [message, setMessage] = useState('')
 
   const changeToFalse = () => {
     setEditMode(false)
@@ -68,18 +62,6 @@ const OneUpload = props => {
     UploadsDataServices.get(id)
       .then(response => {
         setCurrentUpload(response.data)
-        console.log(response.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-  const getComments = uploadId => {
-    CommentsService.getAllCommentsByUpload(uploadId)
-      .then(response => {
-        setComments(response.data)
-        console.log(response.data)
       })
       .catch(err => {
         console.log(err)
@@ -92,19 +74,8 @@ const OneUpload = props => {
         userId: currentUser.id,
         uploadId: upload
       })
-      .then(response => {
-        console.log(response.data)
-        getUpload(props.match.params.id)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-  const deletePost = uploadId => {
-    UploadsDataServices.delete(uploadId)
       .then(() => {
-        // getUpload(props.match.params.id)
-        return <Redirect to='/' />
+        getUpload(props.match.params.id)
       })
       .catch(err => {
         console.log(err)
@@ -113,7 +84,6 @@ const OneUpload = props => {
 
   useEffect(() => {
     getUpload(props.match.params.id)
-    getComments(props.match.params.id)
   }, [props.match.params.id])
 
   return (
@@ -124,14 +94,14 @@ const OneUpload = props => {
             <EditUpload id={currentUpload.id} changeToFalse={changeToFalse} />
           ) : (
             <div>
-              {currentUser.id == currentUpload.userId ||
+              {currentUser.id === currentUpload.userId ||
               user.roles == 'ROLE_ADMIN' ? (
                 <Card
-                className="col-md-auto mx-auto"
-                style={{ maxWidth: 800, width: '80%', marginBottom: 20 }}
+                  className='col-md-auto mx-auto'
+                  style={{ maxWidth: 800, width: '80%', marginBottom: 20 }}
                   cover={
                     <img
-                      alt='picture'
+                      alt='post'
                       src={currentUpload.image}
                       height='700px'
                       style={{ objectFit: 'cover' }}
@@ -190,7 +160,7 @@ const OneUpload = props => {
                       posté par{' '}
                       <Link
                         to={
-                          currentUpload.user.id == currentUser.id
+                          currentUpload.user.id === currentUser.id
                             ? '/profile'
                             : `/user/${currentUpload.user.id}`
                         }
@@ -215,11 +185,11 @@ const OneUpload = props => {
                 </Card>
               ) : (
                 <Card
-                className="col-md-auto mx-auto"
+                  className='col-md-auto mx-auto'
                   style={{ maxWidth: 800, width: '80%', marginBottom: 20 }}
                   cover={
                     <img
-                      alt='picture'
+                      alt='post'
                       src={currentUpload.image}
                       height='700px'
                       style={{ objectFit: 'cover' }}
@@ -233,7 +203,7 @@ const OneUpload = props => {
                             likePost(currentUpload.id)
                           }}
                           icon={
-                            currentUpload.likes == null ? (
+                            currentUpload.likes === null ? (
                               <FavoriteBorder />
                             ) : (
                               <Favorite style={{ color: 'red' }} />

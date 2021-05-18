@@ -1,5 +1,5 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+
 
 const API_URL = "http://localhost:5000/api/auth/";
 
@@ -23,7 +23,7 @@ class AuthService {
     localStorage.removeItem("user")
     window.location.reload()
     window.location.href = `http://localhost:3000/login`
-    // return <Redirect to ="/login"></Redirect>
+
   }
 
   register(firstName, lastName, email, password) {

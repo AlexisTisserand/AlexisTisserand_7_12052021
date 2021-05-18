@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import UploadsDataServices from '../../services/upload.service'
 import UserService from '../../services/user.service'
 import jwt_decode from 'jwt-decode'
-import AuthService from '../../services/auth.service'
-import ModalButtonDeleteUser from './../ModalButton/ModalButtonDeleteUser';
+
+import ModalButtonDeleteUser from './../ModalButton/ModalButtonDeleteUser'
 
 const EditProfile = props => {
   const user = JSON.parse(localStorage.getItem('user'))
@@ -28,7 +28,6 @@ const EditProfile = props => {
   const retrieveUser = () => {
     UserService.getUser(currentUser.id)
       .then(response => {
-        // console.log(response.data.comments)
         setComments(response.data.comments)
         setCurrentUser(response.data)
       })
@@ -38,7 +37,6 @@ const EditProfile = props => {
   const updateUser = () => {
     UserService.update(currentUser.id, currentUser)
       .then(response => {
-        console.log(response.data)
         retrieveUser()
         props.changeToFalse()
         setMessage('Cet utilisateur a été modifié avec succès')
@@ -48,20 +46,6 @@ const EditProfile = props => {
       })
   }
 
-  const deleteUser = (e) => {
-    e.preventDefault();
-    UserService.deleteUser(currentUser.id)
-      .then(response => {
-        window.location.reload()
-        console.log(response.data)
-        localStorage.removeItem('user')
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    
-  }
-
   const handleInputChange = event => {
     const { name, value } = event.target
     setCurrentUser({ ...currentUser, [name]: value })
@@ -69,7 +53,6 @@ const EditProfile = props => {
 
   useEffect(() => {
     UploadsDataServices.getPostsByUser(currentUser.id).then(response => {
-      // console.log(response.data)
       setYourUploads(response.data.reverse())
     })
 
@@ -82,8 +65,7 @@ const EditProfile = props => {
     formData.append('image', currentUser.image)
 
     UserService.update(currentUser.id, formData)
-      .then(response => {
-        console.log(response.data)
+      .then(() => {
         setMessage('Cet utilisateur a été modifié avec succès')
         retrieveUser()
         props.changeToFalse()
@@ -99,7 +81,6 @@ const EditProfile = props => {
       [event.target.name]: event.target.files[0]
     })
     setFile(event.target.files[0])
-    console.log(event.target.files[0])
   }
 
   const handleClick = () => {
@@ -238,7 +219,7 @@ const EditProfile = props => {
                       className='form-control'
                       id='description'
                       name='description'
-                      value={currentUser.description}
+                      value={currentUser.description ? currentUser.description : ' '}
                       onChange={handleInputChange}
                     />
                   </p>
@@ -252,7 +233,7 @@ const EditProfile = props => {
                 >
                   Valider les modifications
                 </button>
-                <ModalButtonDeleteUser id={currentUser.id}/>
+                <ModalButtonDeleteUser id={currentUser.id} />
                 {/* <button className='btn badge-danger ' onClick={deleteUser}>
                   Supprimer le profil
                 </button> */}

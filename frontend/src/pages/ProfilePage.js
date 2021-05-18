@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import UserService from '../services/user.service'
 
 import LoginRequest from './../components/LoginRequest/LoginRequest';
 import Profile from '../components/Profile/Profile';

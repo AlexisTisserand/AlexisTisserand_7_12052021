@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import UploadsDataServices from '../../services/upload.service'
 import UserService from '../../services/user.service'
-import AuthService from '../../services/auth.service'
-// import AddCircleIcon from '@material-ui/icons/AddCircle';
-// import SkeletonImage from 'antd/lib/skeleton/Image'
+
 
 const UpdateUser = props => {
   const initialUserState = {
@@ -25,7 +23,6 @@ const UpdateUser = props => {
       .then(response => {
         setUser(response.data)
         setComments(response.data.comments)
-        console.log(response.data)
       })
       .catch(err => {
         console.log(err)
@@ -36,7 +33,7 @@ const UpdateUser = props => {
     getUser(props.match.params.id)
 
     UploadsDataServices.getPostsByUser(props.match.params.id).then(response => {
-      console.log(response.data)
+      
       setUploads(response.data.reverse())
     })
   }, [props.match.params.id])
@@ -49,7 +46,6 @@ const UpdateUser = props => {
             <div className='media align-items-end profile-head'>
               <div className='profile mr-3'>
                 <img
-                  // src='./../img/profile-picture.jpg'
                   src={user.image ? user.image : './../img/profile-picture.jpg'}
                   alt=''
                   width='150'
