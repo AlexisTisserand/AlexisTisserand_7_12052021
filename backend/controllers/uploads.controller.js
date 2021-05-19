@@ -134,6 +134,7 @@ exports.findOne = (req, res, next) => {
     })
     .catch(err => {
       res.status(500).send({
+        err: err.message,
         message: 'Impossible de récupérer ce post avec cet id: ' + id
       })
     })
@@ -164,7 +165,7 @@ exports.update = (req, res, next) => {
     }`
   }
 
-  const filename = req.body.image.split('/images/')[1]
+  // const filename = req.body.image.split('/images/')[1]
 
   Upload.findOne({ where: { id: id } }).then(() => {
     Upload.update(req.body, {

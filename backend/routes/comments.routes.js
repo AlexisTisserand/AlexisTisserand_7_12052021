@@ -4,7 +4,7 @@ const commentsController = require('../controllers/comments.controller');
 const { authJwt } = require('../middleware');
 
 //Créer post
-router.post("/",[authJwt.verifyToken], commentsController.createComment);
+router.post("/", [authJwt.verifyToken], commentsController.createComment);
 
 //Get all comments
 router.get("/", [authJwt.verifyToken], commentsController.getAllComments)
