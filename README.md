@@ -1,6 +1,7 @@
 # 🏢 Groupomania
 
 Septième et dernier projet du parcours "Développeur Web" proposé par OpenClassrooms. <br>
+
 L'objectif de ce projet était de **construire un réseau social interne pour les employés de Groupomania**. Le but de cet outil est de faciliter les interactions entre collègues. Le département RH de Groupomania a laissé libre cours à son imagination pour les fonctionnalités du réseau et a imaginé plusieurs briques pour favoriser les échanges entre collègues. 
 
 Vous trouverez le [brief complet ici](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DWJ_FR_P7/Groupomania_Specs_FR_DWJ_VF.pdf) 👀
