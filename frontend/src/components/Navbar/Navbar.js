@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom'
 import AuthService from '../../services/auth.service'
 import ModalButtonAddUploads from '../ModalButton/ModalButtonAddUpload'
 import { useSelector } from 'react-redux'
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 const Navbar = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false)
@@ -29,9 +28,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-groupomania fixed-top '>
-        <NavLink to={'/'} className='navbar-brand navbar-groupomania-brand'>
-          Groupomania
+      <nav className='navbar navbar-expand-lg navbar-light bg-light navbar-groupomania fixed-top mr-0 '>
+        <NavLink to={'/'} className='navbar-brand navbar-groupomania-brand mr-2'>
+          <img src='./../img/groupomania-logo.png' style={{ width: 150 }} />{' '}
         </NavLink>
 
         <button
@@ -48,7 +47,7 @@ const Navbar = () => {
 
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mr-auto'>
-            <li className='nav-item' >
+            <li className='nav-item'>
               <NavLink to={'/home'} className='nav-link nav-link-groupomania'>
                 Accueil
               </NavLink>
@@ -61,7 +60,7 @@ const Navbar = () => {
               </li>
             )}
             {showAdminBoard && (
-              <li className='nav-item' >
+              <li className='nav-item'>
                 <NavLink
                   to={'/admin'}
                   className='nav-link nav-link-groupomania'
@@ -87,7 +86,7 @@ const Navbar = () => {
                   aria-haspopup='true'
                   aria-expanded='false'
                 >
-                  <AccountCircleIcon/>
+                  <AccountCircleIcon />
                 </div>
                 <div
                   className='dropdown-menu dropdown-menu-right'

@@ -42,6 +42,7 @@ const UploadsList = () => {
   return (
     <div>
       <div className='list-uploads'>
+        
         {!isEmpty(uploads) &&
           uploads.map(upload => {
             return (

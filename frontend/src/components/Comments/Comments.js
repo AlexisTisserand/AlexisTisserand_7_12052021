@@ -76,6 +76,7 @@ const Comments = props => {
   useEffect(() => {
     getUpload(props.id)
     getComments(props.id)
+    retrieveUser(props.id)
   }, [props.id])
 
   const data = {
@@ -234,7 +235,7 @@ const Comments = props => {
                               </span>{' '}
                               <span className='ml-3'>
                                 {currentUser.id === comment.userId ||
-                                user.roles == "ROLE_ADMIN" ? (
+                                user.roles === 'ROLE_ADMIN' ? (
                                   <li className='post-like'>
                                     <EditIcon
                                       onClick={() => {

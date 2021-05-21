@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import UploadsDataServices from '../../services/upload.service'
+import UserService from '../../services/user.service'
+
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -17,11 +19,15 @@ import Comments from '../Comments/Comments'
 
 import EditUpload from './EditUpload'
 import ModalDelete from '../ModalButton/ModalDelete'
+import jwt_decode from 'jwt-decode'
+
 
 const { Meta } = Card
 
 const OneUpload = props => {
-  const currentUser = useSelector(state => state.authReducer).user
+  const user = JSON.parse(localStorage.getItem('user'))
+  const decodedUser = jwt_decode(user.accessToken)
+ const [currentUser, setCurrentUser] = useState(decodedUser)
 
   const [isModalVisible, setIsModalVisible] = useState(false)
   
@@ -50,7 +56,11 @@ const OneUpload = props => {
     setIsModalVisible(false)
   }
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const retrieveUser = () => {
+    UserService.getUser(currentUser.id).then(response => {
+      setCurrentUser(response.data)
+    })
+  }
 
 
   const changeToFalse = () => {
@@ -82,8 +92,10 @@ const OneUpload = props => {
       })
   }
 
+
   useEffect(() => {
     getUpload(props.match.params.id)
+    retrieveUser()
   }, [props.match.params.id])
 
   return (
